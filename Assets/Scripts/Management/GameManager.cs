@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject JumpButtonToggle;
     [SerializeField] private GameObject PauseScreen;
 
+    [SerializeField] private Animator UpdateWidget;
+    [SerializeField] private Animator ToastAnimator;
+
     // Translators
     [SerializeField] private TranslationIntermediate RecordTranslator;
     [SerializeField] private TranslationIntermediate LastScoreTranslator;
+    [SerializeField] private TranslationIntermediate ToastTranslator;
 
     // Texts
     [SerializeField] private TMPro.TMP_Text VersionText;
@@ -27,6 +31,23 @@ public class GameManager : MonoBehaviour
 
     private bool Paused;
     private bool Updated;
+
+    private void UpdateCheck()
+    {
+        if (Updated)
+        {
+            ToastTranslator.TranslateTarget();
+            ToastAnimator.Play("FadeIn");
+        }
+        else
+        {
+            UpdateWidget.Play("FadeIn");
+        }
+    }
+
+    public void CheckForUpdate() => StartCoroutine(GetRequest("https://raw.githubusercontent.com/EverRak/22D/refs/heads/main/version.txt"));
+
+    public void GotoItchIOPage() => Application.OpenURL("https://everrak.itch.io/too2d");
 
     public void SaveRecord()
     {
@@ -72,8 +93,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(GetRequest("https://raw.githubusercontent.com/predo2810/22D/main/version.txt"));
-
         bool isMobile = Application.platform == RuntimePlatform.Android;
 
         JumpButton.SetActive(isMobile);
@@ -103,20 +122,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GetRequest(string uri)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        using UnityWebRequest webRequest = UnityWebRequest.Get(uri);
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+            Debug.Log("Error: " + webRequest.error);
+        else
         {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError)
-                Debug.Log(": Error: " + webRequest.error);
-            else
-            {
-                Updated = webRequest.downloadHandler.text == Application.version;
-                Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-            }
-
+            Updated = webRequest.downloadHandler.text == Application.version;
+            Debug.Log("Received: " + webRequest.downloadHandler.text);
         }
+
+        UpdateCheck();
     }
 
     public void SetLanguageIndex(int index)
