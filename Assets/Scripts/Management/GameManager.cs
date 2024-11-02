@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Animator UpdateWidget;
     [SerializeField] private Animator ToastAnimator;
+    [SerializeField] private Animator BGAnimator;
 
     // Translators
     [SerializeField] private TranslationIntermediate RecordTranslator;
     [SerializeField] private TranslationIntermediate LastScoreTranslator;
     [SerializeField] private TranslationIntermediate ToastTranslator;
+    [SerializeField] private TranslationIntermediate PointsTranslator;
 
     // Texts
     [SerializeField] private TMPro.TMP_Text VersionText;
@@ -29,6 +31,9 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private ToggleUtil SoundToggle;
 
+    [SerializeField] private float DayNightCycle = 30;
+
+    private bool IsNight;
     private bool Paused;
     private bool Updated;
 
@@ -57,6 +62,9 @@ public class GameManager : MonoBehaviour
         // Save the last score.
         PlayerPrefs.SetFloat("Last", points);
 
+        // Add current points to the saved total.
+        PlayerPrefs.SetInt("Points", PlayerPrefs.GetInt("Points") + (int)points);
+
         // Check if we already saved a record,
         if (PlayerPrefs.HasKey("Record"))
             // If the saved record is greater or equal than the current points,
@@ -66,6 +74,15 @@ public class GameManager : MonoBehaviour
 
         // Save a record with the current points.
         PlayerPrefs.SetFloat("Record", points);
+    }
+
+    private void ToggleDayNight()
+    {
+        IsNight = !IsNight;
+
+        BGAnimator.Play(IsNight ? "NightFade" : "DayFade");
+
+        Invoke("ToggleDayNight", DayNightCycle);
     }
     
     private void Update()
@@ -93,6 +110,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Invoke("ToggleDayNight", DayNightCycle);
+
+        PointsTranslator.Translate(PlayerPrefs.GetInt("Points").ToString());
+        
         bool isMobile = Application.platform == RuntimePlatform.Android;
 
         JumpButton.SetActive(isMobile);

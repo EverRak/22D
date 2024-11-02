@@ -11,6 +11,8 @@ public class CustomizationManager : MonoBehaviour
 
     [SerializeField] private TrailRenderer PlayerTrail;
 
+    [SerializeField] private Animator PlayerAnimator;
+
     private void Start()
     {
         if (!PlayerPrefs.HasKey("HeadEquip"))
@@ -25,11 +27,24 @@ public class CustomizationManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("TrailEquip"))
             PlayerPrefs.SetInt("TrailEquip", -1);
 
+        if (!PlayerPrefs.HasKey("WalkingAnim"))
+            PlayerPrefs.SetInt("WalkingAnim", 0);
+
+        if (!PlayerPrefs.HasKey("IdleAnim"))
+            PlayerPrefs.SetInt("IdleAnim", 0);
+
         EquipHead(PlayerPrefs.GetInt("HeadEquip"));
         EquipEye(PlayerPrefs.GetInt("EyeEquip"));
         EquipFace(PlayerPrefs.GetInt("FaceEquip"));
         EquipTrail(PlayerPrefs.GetInt("TrailEquip"));
+
+        PlayerAnimator.SetInteger("WalkingIndex", PlayerPrefs.GetInt("WalkingAnim"));
+        PlayerAnimator.SetInteger("IdleIndex", PlayerPrefs.GetInt("IdleAnim"));
+
+        PlayerAnimator.Play(PlayerPrefs.GetString("LastUsedAnimation", "Idle"));
     }
+
+    // TODO: Maybe make this methods into only 1 (with multi-functionality)
 
     public void EquipEye(int itemID)
     {
@@ -102,6 +117,26 @@ public class CustomizationManager : MonoBehaviour
         CopyTrailValues(Trails[itemID], PlayerTrail);
 
         PlayerPrefs.SetInt("TrailEquip", itemID);
+    }
+
+    // This is used to set the last defined animation in the customization menu, so in every other screen, the animation that will play is that from the last selected category.
+    public void SetLastUsedAnimation(string animationBaseName)
+    {
+        PlayerPrefs.SetString("LastUsedAnimation", animationBaseName);
+    }
+
+    public void SetWalkingAnimation(int ID)
+    {
+        PlayerPrefs.SetInt("WalkingAnim", ID);
+        PlayerAnimator.Play("Walk");
+        PlayerAnimator.SetInteger("WalkingIndex", ID);
+    }
+
+    public void SetIdleAnimation(int ID)
+    {
+        PlayerPrefs.SetInt("IdleAnim", ID);
+        PlayerAnimator.Play("Idle");
+        PlayerAnimator.SetInteger("IdleIndex", ID);
     }
 
     private void CopyTrailValues(TrailRenderer source, TrailRenderer destination)

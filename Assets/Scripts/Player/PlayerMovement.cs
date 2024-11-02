@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float MoveSpeedIncrease = 0.005f;
     [SerializeField] private float JumpForce = 10f;
     [SerializeField] private float StompForce = 10f;
+    [SerializeField] private float AnimationSpeedDivider = 4f;
 
     [SerializeField] private Transform PlayerParts;
     
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
 
-            PlayerAnimator.speed = MoveSpeed;
+            PlayerAnimator.speed = MoveSpeed / AnimationSpeedDivider;
 
 
             JumpButtonTranslator.TranslateWithList(CanJump ? 0 : (CanStomp ? 1 : 2));
