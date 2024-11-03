@@ -126,7 +126,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: PlayerParts/Face/Eye Left
+    path: PlayerParts/PlayerBody/Face/Eye Left
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -169,7 +169,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: PlayerParts/Face/Eye Right
+    path: PlayerParts/PlayerBody/Face/Eye Right
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -194,14 +194,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1299548045
+      path: 335782808
       attribute: 3
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1688039811
+      path: 152691532
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -512,7 +512,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: PlayerParts/Face/Eye Left
+    path: PlayerParts/PlayerBody/Face/Eye Left
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -549,7 +549,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: PlayerParts/Face/Eye Left
+    path: PlayerParts/PlayerBody/Face/Eye Left
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -586,7 +586,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: PlayerParts/Face/Eye Left
+    path: PlayerParts/PlayerBody/Face/Eye Left
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -632,7 +632,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: PlayerParts/Face/Eye Right
+    path: PlayerParts/PlayerBody/Face/Eye Right
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -678,7 +678,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: PlayerParts/Face/Eye Right
+    path: PlayerParts/PlayerBody/Face/Eye Right
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -724,7 +724,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: PlayerParts/Face/Eye Right
+    path: PlayerParts/PlayerBody/Face/Eye Right
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []

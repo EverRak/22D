@@ -29,8 +29,9 @@ public class ToggleUtil : MonoBehaviour
                 else
                     FalseCall.Invoke();    
         }
-            
-        Translator.TranslateWithListStartEnd(Toggled ? 0 : 1);
+        
+        if (Translator)
+            Translator.TranslateWithListStartEnd(Toggled ? 0 : 1);
     }
 
     public void Toggle()

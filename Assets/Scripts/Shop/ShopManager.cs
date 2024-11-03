@@ -19,10 +19,16 @@ public class ShopManager : MonoBehaviour
         PointsTranslator.Translate(PlayerPrefs.GetInt("Points").ToString());
     }
 
-    public void PreviewAnimation(int ID)
+    public void PreviewWalkAnimation(int ID)
     {
         PlayerAnimator.Play("Walk");
         PlayerAnimator.SetInteger("WalkingIndex", ID);
+    }
+
+    public void PreviewIdleAnimation(int ID)
+    {
+        PlayerAnimator.Play("Idle");
+        PlayerAnimator.SetInteger("IdleIndex", ID);
     }
 
     public void RequestBuy(string buyString)
