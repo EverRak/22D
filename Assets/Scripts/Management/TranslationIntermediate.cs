@@ -17,11 +17,11 @@ public class TranslationIntermediate : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text Target;
 
-    public void Translate(string middleString)
+    public void Translate(object middleValue)
     {
         int savedIndex = PlayerPrefs.GetInt("Language", 0);
 
-        Target.text = $"{TranslatedStringsStart[savedIndex]}{middleString}{TranslatedStringsEnd[savedIndex]}";
+        Target.text = $"{TranslatedStringsStart[savedIndex]}{middleValue}{TranslatedStringsEnd[savedIndex]}";
     }
 
     public void TranslateWithList(int listIndex)

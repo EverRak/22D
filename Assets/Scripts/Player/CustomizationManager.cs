@@ -13,8 +13,13 @@ public class CustomizationManager : MonoBehaviour
 
     [SerializeField] private Animator PlayerAnimator;
 
+    [SerializeField] private TranslationIntermediate RecordTranslator;
+
     private void Start()
     {
+        if (RecordTranslator)
+            RecordTranslator.Translate(PlayerPrefs.GetFloat("Record"));
+
         if (!PlayerPrefs.HasKey("HeadEquip"))
             PlayerPrefs.SetInt("HeadEquip", -1);
 

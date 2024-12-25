@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         Invoke("ToggleDayNight", DayNightCycle);
 
-        PointsTranslator.Translate(PlayerPrefs.GetInt("Points").ToString());
+        PointsTranslator.Translate(PlayerPrefs.GetInt("Points"));
         
         bool isMobile = Application.platform == RuntimePlatform.Android;
 
@@ -122,10 +122,10 @@ public class GameManager : MonoBehaviour
         MainMixer.SetFloat("MainVolume", GetPrefsBool("SoundsEnabled", false) ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(1) * 20);
 
         // Set the record text based on the saved value.
-        RecordTranslator.Translate(PlayerPrefs.GetFloat("Record").ToString());
+        RecordTranslator.Translate(PlayerPrefs.GetFloat("Record"));
         // RecordText.text = $"Record: {PlayerPrefs.GetFloat("Record")}";
 
-        LastScoreTranslator.Translate(PlayerPrefs.GetFloat("Last").ToString());
+        LastScoreTranslator.Translate(PlayerPrefs.GetFloat("Last"));
 
         // Set the version text to the application version followed by the unity version.
         VersionText.text = $"Too 2D - {Application.version} Unity {Application.unityVersion}";

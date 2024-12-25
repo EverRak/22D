@@ -16,7 +16,7 @@ public class ShopManager : MonoBehaviour
 
     private void Update()
     {
-        PointsTranslator.Translate(PlayerPrefs.GetInt("Points").ToString());
+        PointsTranslator.Translate(PlayerPrefs.GetInt("Points"));
     }
 
     public void PreviewWalkAnimation(int ID)

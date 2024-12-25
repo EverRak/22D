@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
             Points = float.Parse((RB2D.position.x + 10).ToString("f1"));
 
-            PointsTranslator.Translate(Points.ToString());
+            PointsTranslator.Translate(Points);
 
             MoveSpeed += MoveSpeedIncrease;
 
