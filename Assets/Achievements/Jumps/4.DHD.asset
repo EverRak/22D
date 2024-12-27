@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 190957f0a07a4ad45974b28e981dd01e, type: 3}
-  m_Name: 2.Jumper
+  m_Name: 4.DHD
   m_EditorClassIdentifier: 
   SavedValue: Jumps
-  StoreBool: Jumper
+  StoreBool: DHD
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 50
-  EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}
+  ValueToReach: 300
+  EarnedClip: {fileID: 8300000, guid: a93679677707c1445ba58e85cf08f44d, type: 3}
