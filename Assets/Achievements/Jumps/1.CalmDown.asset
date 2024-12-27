@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 190957f0a07a4ad45974b28e981dd01e, type: 3}
-  m_Name: Jumper
+  m_Name: 1.CalmDown
   m_EditorClassIdentifier: 
-  SavedValue: Jumps
-  StoreBool: Jumper
+  SavedValue: Stomps
+  StoreBool: CalmDown
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 100
+  ValueToReach: 50
   EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}

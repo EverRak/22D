@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private ToggleUtil SoundToggle;
 
-    [SerializeField] private float DayNightCycle = 30;
+    // [SerializeField] private float DayNightCycle = 30;
 
-    private bool IsNight;
+    // private bool IsNight;
     private bool Paused;
     private bool Updated;
 
@@ -54,13 +54,15 @@ public class GameManager : MonoBehaviour
 
     public void GotoItchIOPage() => Application.OpenURL("https://everrak.itch.io/too2d");
 
-    public void SaveRecord()
+    private void SaveRecord()
     {
         // Local variable for points.
         float points = FindObjectOfType<PlayerMovement>().Points;
 
         // Save the last score.
         PlayerPrefs.SetFloat("Last", points);
+
+        PlayerPrefs.SetFloat("AllTimePoints", PlayerPrefs.GetFloat("AllTimePoints") + points);
 
         // Add current points to the saved total.
         PlayerPrefs.SetInt("Points", PlayerPrefs.GetInt("Points") + (int)points);
@@ -76,14 +78,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("Record", points);
     }
 
-    private void ToggleDayNight()
+    public void Die()
     {
-        IsNight = !IsNight;
-
-        BGAnimator.Play(IsNight ? "NightFade" : "DayFade");
-
-        Invoke("ToggleDayNight", DayNightCycle);
+        PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths", 0) + 1);
+        SaveRecord();
     }
+
+    // private void ToggleDayNight()
+    // {
+    //     IsNight = !IsNight;
+
+    //     BGAnimator.Play(IsNight ? "NightFade" : "DayFade");
+
+    //     Invoke("ToggleDayNight", DayNightCycle);
+    // }
     
     private void Update()
     {
@@ -110,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Invoke("ToggleDayNight", DayNightCycle);
+        // Invoke("ToggleDayNight", DayNightCycle);
 
         PointsTranslator.Translate(PlayerPrefs.GetInt("Points"));
         
@@ -150,8 +158,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Error: " + webRequest.error);
         else
         {
-            Updated = webRequest.downloadHandler.text == Application.version;
-            Debug.Log("Received: " + webRequest.downloadHandler.text);
+            Updated = webRequest.downloadHandler.text.ToString().Trim() == Application.version;
+            Debug.Log("Received: " + webRequest.downloadHandler.text.ToString().Trim());
         }
 
         UpdateCheck();

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 190957f0a07a4ad45974b28e981dd01e, type: 3}
-  m_Name: GonnaBreakSmt
+  m_Name: 3.Unalived
   m_EditorClassIdentifier: 
-  SavedValue: Stomps
-  StoreBool: GonnaBreakSmt
+  SavedValue: Deaths
+  StoreBool: Unalived
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 150
+  ValueToReach: 25
   EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}

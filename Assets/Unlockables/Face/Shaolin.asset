@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190957f0a07a4ad45974b28e981dd01e, type: 3}
-  m_Name: Walker
+  m_Script: {fileID: 11500000, guid: beb8242ac9396f145975154d5999588a, type: 3}
+  m_Name: Shaolin
   m_EditorClassIdentifier: 
-  SavedValue: Run
-  StoreBool: Walker
-  IsInt: 1
-  IsDecreasing: 0
-  ValueToReach: 300
-  EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}
+  Size: {x: 0.2, y: 0.2}
+  Offset: {x: 0.21, y: -0.3}
+  ThisSprite: {fileID: 21300000, guid: 1fec9a4a30b682a488572a5d69a07551, type: 3}
+  Type: 2
