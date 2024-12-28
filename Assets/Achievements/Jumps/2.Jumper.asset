@@ -16,5 +16,5 @@ MonoBehaviour:
   StoreBool: Jumper
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 50
+  ValueToReach: 75
   EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}

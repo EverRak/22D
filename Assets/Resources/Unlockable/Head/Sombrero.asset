@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beb8242ac9396f145975154d5999588a, type: 3}
-  m_Name: DealtWithIt
+  m_Name: Sombrero
   m_EditorClassIdentifier: 
-  Size: {x: 0.6, y: 0.6}
-  Offset: {x: -1.15, y: 0}
-  ThisSprite: {fileID: 21300000, guid: b7f275a2af883fa478570d11ad92ad0a, type: 3}
-  Type: 0
+  Size: {x: 1.4, y: 1.2}
+  Offset: {x: 0, y: 0.55}
+  ThisSprite: {fileID: 21300000, guid: 2b0a8f02ba4d0e940b9f2177b1214e50, type: 3}
+  Type: 1

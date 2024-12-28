@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "22D/UnlockableItem")]
 public class UnlockableItem : ScriptableObject
-{
+{    
     public Vector2 Size;
     public Vector2 Offset;
 
@@ -12,7 +12,7 @@ public class UnlockableItem : ScriptableObject
     {
         Eyes,
         Head,
-        Face,
+        Face
     }
 
     public UnlockableType Type;

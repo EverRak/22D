@@ -1,24 +1,17 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour
 {
-    // Jump buttons
+    // Game Objects
     [SerializeField] private GameObject JumpButton;
     [SerializeField] private GameObject ScreenJumpButton;
     [SerializeField] private GameObject JumpButtonToggle;
     [SerializeField] private GameObject PauseScreen;
 
-    [SerializeField] private Animator UpdateWidget;
-    [SerializeField] private Animator ToastAnimator;
-    [SerializeField] private Animator BGAnimator;
-
     // Translators
     [SerializeField] private TranslationIntermediate RecordTranslator;
     [SerializeField] private TranslationIntermediate LastScoreTranslator;
-    [SerializeField] private TranslationIntermediate ToastTranslator;
     [SerializeField] private TranslationIntermediate PointsTranslator;
 
     // Texts
@@ -35,24 +28,6 @@ public class GameManager : MonoBehaviour
 
     // private bool IsNight;
     private bool Paused;
-    private bool Updated;
-
-    private void UpdateCheck()
-    {
-        if (Updated)
-        {
-            ToastTranslator.TranslateTarget();
-            ToastAnimator.Play("FadeIn");
-        }
-        else
-        {
-            UpdateWidget.Play("FadeIn");
-        }
-    }
-
-    public void CheckForUpdate() => StartCoroutine(GetRequest("https://raw.githubusercontent.com/EverRak/22D/refs/heads/main/version.txt"));
-
-    public void GotoItchIOPage() => Application.OpenURL("https://everrak.itch.io/too2d");
 
     private void SaveRecord()
     {
@@ -147,22 +122,6 @@ public class GameManager : MonoBehaviour
 
         // Set the language dropdown (DD) index to the saved value.
         LanguageDD.SetValueWithoutNotify(PlayerPrefs.GetInt("Language", 0));
-    }
-
-    private IEnumerator GetRequest(string uri)
-    {
-        using UnityWebRequest webRequest = UnityWebRequest.Get(uri);
-        yield return webRequest.SendWebRequest();
-
-        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
-            Debug.Log("Error: " + webRequest.error);
-        else
-        {
-            Updated = webRequest.downloadHandler.text.ToString().Trim() == Application.version;
-            Debug.Log("Received: " + webRequest.downloadHandler.text.ToString().Trim());
-        }
-
-        UpdateCheck();
     }
 
     public void SetLanguageIndex(int index)

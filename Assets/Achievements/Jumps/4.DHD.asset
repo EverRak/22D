@@ -16,5 +16,5 @@ MonoBehaviour:
   StoreBool: DHD
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 300
+  ValueToReach: 400
   EarnedClip: {fileID: 8300000, guid: a93679677707c1445ba58e85cf08f44d, type: 3}

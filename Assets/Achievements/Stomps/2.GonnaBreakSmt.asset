@@ -16,5 +16,5 @@ MonoBehaviour:
   StoreBool: GonnaBreakSmt
   IsInt: 1
   IsDecreasing: 0
-  ValueToReach: 150
+  ValueToReach: 250
   EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}

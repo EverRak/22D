@@ -16,5 +16,5 @@ MonoBehaviour:
   StoreBool: Exhaustive
   IsInt: 0
   IsDecreasing: 0
-  ValueToReach: 7500
+  ValueToReach: 10000
   EarnedClip: {fileID: 8300000, guid: 2f7cce7096bf8104fa727068cef0cf8b, type: 3}
