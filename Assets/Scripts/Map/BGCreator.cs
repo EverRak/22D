@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BGCreator : MonoBehaviour
 {
-    [SerializeField] private GameObject BGPrefab;
+    [SerializeField] private GameObject[] BGPrefabStyles;
 
     [SerializeField] private Transform BGParent;
     [SerializeField] private Transform LastCreated;
@@ -23,7 +23,7 @@ public class BGCreator : MonoBehaviour
 
     private void CreateBG()
     {
-        Transform bg = Instantiate(BGPrefab, BGParent).transform;
+        Transform bg = Instantiate(BGPrefabStyles[PlayerPrefs.GetInt("PlatformStyle")], BGParent).transform;
         bg.position = LastCreated.position + Vector3.right * (LastCreated.localScale.x / 2 + Random.Range(5f, 6.5f));
         bg.localScale = new Vector3(Random.Range(MinScale.x, MaxScale.x), Random.Range(MinScale.y, MaxScale.y));
         bg.position = new Vector3(bg.position.x, bg.localScale.y / 2 + Random.Range(-1f, 1f) - 8);

@@ -37,20 +37,28 @@ public class Achievement : MonoBehaviour
         if (ThisAchievement.IsDecreasing)
         {
             if (ThisAchievement.IsInt)
+            {
                 if (PlayerPrefs.GetInt(ThisAchievement.SavedValue) <= ThisAchievement.ValueToReach)
                     Unlock();
+            }
             else
+            {
                 if (PlayerPrefs.GetFloat(ThisAchievement.SavedValue) <= ThisAchievement.ValueToReach)
                     Unlock();
+            }
         }
         else
         {
             if (ThisAchievement.IsInt)
+            {
                 if (PlayerPrefs.GetInt(ThisAchievement.SavedValue) >= ThisAchievement.ValueToReach)
                     Unlock();
+            }
             else
+            {
                 if (PlayerPrefs.GetFloat(ThisAchievement.SavedValue) >= ThisAchievement.ValueToReach)
                     Unlock();
+            }
         }
     }
 

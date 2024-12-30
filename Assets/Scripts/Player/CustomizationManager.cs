@@ -8,6 +8,8 @@ public class CustomizationManager : MonoBehaviour
     // [SerializeField] private UnlockableItem[] FaceItems;
     [SerializeField] private TrailRenderer[] Trails;
 
+    [SerializeField] private GameObject[] StartingPlatformStyles;
+
     [SerializeField] private Transform WeatherParent;
     [SerializeField] private Transform FilterParent;
 
@@ -16,10 +18,22 @@ public class CustomizationManager : MonoBehaviour
     [SerializeField] private TrailRenderer PlayerTrail;
 
     [SerializeField] private Animator PlayerAnimator;
+    [SerializeField] private Animator BGAnimator;
 
     [SerializeField] private TranslationIntermediate RecordTranslator;
 
     public static string[] SaveStrings = { "EyeEquip", "HeadEquip", "FaceEquip" };
+
+    private void Update()
+    {
+        if (StartingPlatformStyles.Length > 0)
+        {
+            int platformStyle = PlayerPrefs.GetInt("PlatformStyle", 0);
+
+            for (int i = 0; i < StartingPlatformStyles.Length; i++)
+                StartingPlatformStyles[i].SetActive(i == platformStyle);
+        }
+    }
 
     private void Start()
     {
@@ -62,20 +76,13 @@ public class CustomizationManager : MonoBehaviour
         // if (!PlayerPrefs.HasKey("FaceEquip"))
         //     PlayerPrefs.SetInt("FaceEquip", -1);
 
-        if (!PlayerPrefs.HasKey("TrailEquip"))
-            PlayerPrefs.SetInt("TrailEquip", -1);
+        CheckAndSetIntegerKey("TrailEquip", -1);
+        CheckAndSetIntegerKey("WeatherEquip", -1);
+        CheckAndSetIntegerKey("FilterEquip", -1);
 
-        if (!PlayerPrefs.HasKey("WalkingAnim"))
-            PlayerPrefs.SetInt("WalkingAnim", 0);
-
-        if (!PlayerPrefs.HasKey("IdleAnim"))
-            PlayerPrefs.SetInt("IdleAnim", 0);
-
-        if (!PlayerPrefs.HasKey("WeatherEquip"))
-            PlayerPrefs.SetInt("WeatherEquip", -1);
-
-        if (!PlayerPrefs.HasKey("FilterEquip"))
-            PlayerPrefs.SetInt("FilterEquip", -1);
+        CheckAndSetIntegerKey("WalkingAnim", 0);
+        CheckAndSetIntegerKey("IdleAnim", 0);
+        CheckAndSetIntegerKey("BGAnimStyle", 0);
 
         // EquipHead(PlayerPrefs.GetInt("HeadEquip"));
         // EquipEye(PlayerPrefs.GetInt("EyeEquip"));
@@ -86,8 +93,17 @@ public class CustomizationManager : MonoBehaviour
 
         PlayerAnimator.SetInteger("WalkingIndex", PlayerPrefs.GetInt("WalkingAnim"));
         PlayerAnimator.SetInteger("IdleIndex", PlayerPrefs.GetInt("IdleAnim"));
+        
+        if (BGAnimator)
+            BGAnimator.SetInteger("Style", PlayerPrefs.GetInt("BGAnimStyle"));
 
         PlayerAnimator.Play(PlayerPrefs.GetString("LastUsedAnimation", "Idle"));
+    }
+
+    private void CheckAndSetIntegerKey(string saveString, int defaultValue)
+    {
+        if (!PlayerPrefs.HasKey(saveString))
+            PlayerPrefs.SetInt(saveString, defaultValue);
     }
 
     public void EquipSprite(UnlockableItem item)
@@ -232,6 +248,13 @@ public class CustomizationManager : MonoBehaviour
         PlayerPrefs.SetInt("IdleAnim", ID);
         PlayerAnimator.Play("Idle");
         PlayerAnimator.SetInteger("IdleIndex", ID);
+    }
+
+    public void SetBGAnimation(int ID)
+    {
+        PlayerPrefs.SetInt("BGAnimStyle", ID);
+        BGAnimator.Play("Start");
+        BGAnimator.SetInteger("Style", ID);
     }
 
     private void CopyTrailValues(TrailRenderer source, TrailRenderer destination)
